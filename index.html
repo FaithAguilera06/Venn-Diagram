@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <audio id="sound1" src="meck.mp3" preload="auto"></audio>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="index.css">
+    <title>Index</title>
+</head>
+<body>
+    <div id ="pre" ></div>
+    <script>
+        var loader = document.getElementById("pre");
+        window.addEventListener("load", function() {
+          setTimeout(function() {
+            loader.style.display = "none";
+          }, 2000); // Adjust the delay (in milliseconds) according to your preference
+        });
+          </script>
+    <header>
+        <img src="Logo.png"class="logo"style style="size-adjust: 5px;"></img>
+        <nav class="navigation">
+            <a href="Index.html" class="active">Home</a>
+            <a href="Intro.html">About</a>
+            <a href="2sets.html">2 Sets</a>
+            <a href="set-three.html">3 Sets</a>
+        </nav>
+    </header>
+    <hr>
+    <div class="container">
+        <h1>
+            SetSensei
+        </h1>
+        <img src="Logo.png"></img>
+        <a>
+            Welcome to our interactive website that brings sets to life through Venn diagrams!
+            <br></br>
+            With our innovative tool, you can visualize and explore sets in a visual and intuitive manner.
+            <br>
+            Whether you're a student studying set theory or simply curious about the relationships between
+            <br>
+            different groups, our website offers a dynamic and engaging experience.
+            <br>
+        </a>
+        <button onmousedown="sound1.play()" class="button2" onclick="location.href='Intro.html';">Get started</button>
+    </div>
+</body>
+</html>
