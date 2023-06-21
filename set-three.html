@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <audio id="sound1" src="meck.mp3" preload="auto"></audio>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="logicset_style.css">
+    <title>3 SETS</title>
+</head>
+<body>
+    <div id ="pre" ></div>
+    <script>
+        var loader = document.getElementById("pre");
+        window.addEventListener("load", function() {
+          setTimeout(function() {
+            loader.style.display = "none";
+          }, 2000); // Adjust the delay (in milliseconds) according to your preference
+        });
+          </script>
+    <header>
+        <img src="Logo.png"class="logo"style style="size-adjust: 5px;"></img>
+        <nav class="navigation">
+            <a href="Index.html">Home</a>
+            <a href="Intro.html">About</a>
+            <a href="2sets.html" >2 Sets</a>
+            <a href="set-three.html" class="active">3 Sets</a>
+        </nav>
+    </header>
+    <hr>
+
+    <div class="column1">
+        <div>
+            <label class="set1">Set A:</label><br>
+            <input type="text" id="set1-input">
+        </div>
+          
+        <div>
+            <br><label class="set2">Set B:</label><br>
+            <input type="text" id="set2-input"> 
+        </div>
+
+        <div>
+            <br><label class="set3">Set C:</label><br>
+            <input type="text" id="set3-input"> 
+        </div>
+          
+        <br><button onmousedown="sound1.play()" id="union-button">Generate Venn Diagram</button>
+        <button onmousedown="sound1.play()" id="reset-button">Reset</button> 
+          
+        <div id="result-container">
+            <div id="union-result">Union: </div>
+            <div id="intersection-result1">Intersection of A and B: </div>
+            <div id="intersection-result2">Intersection of A and C: </div>
+            <div id="intersection-result3">Intersection of B and C: </div>
+            <div id="intersection-result-all">Intersection of All Sets: </div>
+            <div id="difference-result1">Difference of A to B: </div>
+            <div id="difference-result2">Difference of B to A: </div>
+            <div id="difference-result3">Difference of A to C: </div>
+            <div id="difference-result4">Difference of C to A: </div>
+            <div id="difference-result5">Difference of B to C: </div>
+            <div id="difference-result6">Difference of C to B: </div>
+            <div id="complement-result1">Complement of A: </div>
+            <div id="complement-result2">Complement of B: </div>
+            <div id="complement-result3">Complement of C: </div>
+        </div>
+    </div>
+</div>
+</aside>
+         <div class="venn_diagram">
+            <p class="label1"> A</p> <p class="label2"> B</p> 
+            <p class="label3"> C</p> 
+            <p class="overlap1">AB</p> 
+            <p class="overlap2">AC</p> 
+            <p class="overlap3">ABC</p> 
+            <p class="overlap4">BC</p> 
+         
+            <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="110%" viewBox="0 0 100 100" xmlns:xlink="http://www.w3.org/1999/xlink">
+                <defs>
+                <style type="text/css">
+                    path {
+                    stroke:black;
+                    stroke-width: 0.5;
+                    }
+                </style>
+                </defs>
+                <path d="M 50 8 A 30 30 0 1 0 21 59 30 30 0 0 1 41 36 30 30 0 0 1 50 8" style="fill: #E0E2FF;"/>
+                <path d="M 50 8 A 30 30 0 0 0 41 36 30 30 0 0 1 59 36 30 30 0 0 0 50 8" style="fill: transparent;"/>
+                <path d="M 50 8 A 30 30 0 1 1 79 59 30 30 0 0 0 59 36 30 30 0 0 0 50 8" style="fill: #E0FFE8"/>
+                <path d="M 50 52 A 30 30 0 0 1 21 59 30 30 0 0 1 41 36 30 30 0 0 0 50 52" style="fill: transparent;"/>
+                <path d="M 50 52 A 30 30 0 0 1 41 36 30 30 0 0 1 59 36 30 30 0 0 1 50 52" style="fill: transparent;"/>
+                <path d="M 50 52 A 30 30 0 0 0 79 59 30 30 0 0 0 59 36 30 30 0 0 1 50 52" style="fill: transparent;"/>
+                <path d="M 21 59 A 30 30 0 1 0 79 59 30 30 0 0 1 50 52 30 30 0 0 1 21 59" style="fill: #B6E5FB;"/>
+            </svg>
+        </div> 
+        
+        <script>
+      var unionButton = document.getElementById("union-button");
+var resetButton = document.getElementById("reset-button");
+unionButton.addEventListener("click", calculateUnion);
+resetButton.addEventListener("click", resetData);
+
+function calculateUnion() {
+  var set1Input = document.getElementById("set1-input");
+  var set2Input = document.getElementById("set2-input");
+  var set3Input = document.getElementById("set3-input");
+
+  var unionResult = document.getElementById("union-result");
+  var intersectionResult1 = document.getElementById("intersection-result1");
+  var intersectionResult2 = document.getElementById("intersection-result2");
+  var intersectionResult3 = document.getElementById("intersection-result3");
+  var intersectionResultAll = document.getElementById("intersection-result-all");
+  var differenceResult1 = document.getElementById("difference-result1");
+  var differenceResult2 = document.getElementById("difference-result2");
+  var differenceResult3 = document.getElementById("difference-result3");
+  var differenceResult4 = document.getElementById("difference-result4");
+  var differenceResult5 = document.getElementById("difference-result5");
+  var differenceResult6 = document.getElementById("difference-result6");
+  var complementResult1 = document.getElementById("complement-result1");
+  var complementResult2 = document.getElementById("complement-result2");
+  var complementResult3 = document.getElementById("complement-result3");
+
+  var set1Values = set1Input.value.split(",").map(value => value.trim());
+  var set2Values = set2Input.value.split(",").map(value => value.trim());
+  var set3Values = set3Input.value.split(",").map(value => value.trim());
+
+  var union = Array.from(new Set([...set1Values, ...set2Values, ...set3Values]));
+
+  var intersection1 = set1Values.filter(value => set2Values.includes(value));
+  var intersection2 = set1Values.filter(value => set3Values.includes(value));
+  var intersection3 = set2Values.filter(value => set3Values.includes(value));
+  var intersectionAll = set1Values.filter(value => set2Values.includes(value) && set3Values.includes(value));
+
+  var difference1 = set1Values.filter(value => !set2Values.includes(value));
+  var difference2 = set2Values.filter(value => !set1Values.includes(value));
+  var difference3 = set1Values.filter(value => !set3Values.includes(value));
+  var difference4 = set3Values.filter(value => !set1Values.includes(value));
+  var difference5 = set2Values.filter(value => !set3Values.includes(value));
+  var difference6 = set3Values.filter(value => !set2Values.includes(value));
+
+  var unionSet = [...set1Values, ...set2Values, ...set3Values];
+  var complement1 = unionSet.filter(value => !set1Values.includes(value));
+  var complement2 = unionSet.filter(value => !set2Values.includes(value));
+  var complement3 = unionSet.filter(value => !set3Values.includes(value));
+
+  complement1 = Array.from(new Set(complement1));
+  complement2 = Array.from(new Set(complement2));
+  complement3 = Array.from(new Set(complement3));
+
+  unionResult.innerHTML = "Union: " + union.map(value => "<span>" + value + "</span>").join(", ");
+  intersectionResult1.innerHTML = "Intersection of A and B: " + intersection1.map(value => "<span>" + value + "</span>").join(", ");
+  intersectionResult2.innerHTML = "Intersection of A and C: " + intersection2.map(value => "<span>" + value + "</span>").join(", ");
+  intersectionResult3.innerHTML = "Intersection of B and C: " + intersection3.map(value => "<span>" + value + "</span>").join(", ");
+  intersectionResultAll.innerHTML = "Intersection of All Sets: " + intersectionAll.map(value => "<span>" + value + "</span>").join(", ");
+  differenceResult1.innerHTML = "Difference of A to B: " + difference1.map(value => "<span>" + value + "</span>").join(", ");
+  differenceResult2.innerHTML = "Difference of B to A: " + difference2.map(value => "<span>" + value + "</span>").join(", ");
+  differenceResult3.innerHTML = "Difference of A to C: " + difference3.map(value => "<span>" + value + "</span>").join(", ");
+  differenceResult4.innerHTML = "Difference of C to A: " + difference4.map(value => "<span>" + value + "</span>").join(", ");
+  differenceResult5.innerHTML = "Difference of B to C: " + difference5.map(value => "<span>" + value + "</span>").join(", ");
+  differenceResult6.innerHTML = "Difference of C to B: " + difference6.map(value => "<span>" + value + "</span>").join(", ");
+  complementResult1.innerHTML = "Complement of A: " + complement1.map(value => "<span>" + value + "</span>").join(", ");
+  complementResult2.innerHTML = "Complement of B: " + complement2.map(value => "<span>" + value + "</span>").join(", ");
+  complementResult3.innerHTML = "Complement of C: " + complement3.map(value => "<span>" + value + "</span>").join(", ");
+
+  generateVennDiagram(set1Values, set2Values, set3Values, intersection1, intersection2, intersection3, intersectionAll);
+}
+
+function generateVennDiagram(set1Values, set2Values, set3Values, intersection1, intersection2, intersection3, intersectionAll) {
+  var circle1Label = document.querySelector(".venn_diagram .label1");
+  var circle2Label = document.querySelector(".venn_diagram .label2");
+  var circle3Label = document.querySelector(".venn_diagram .label3");
+  var overlapLabel1 = document.querySelector(".overlap1");
+  var overlapLabel2 = document.querySelector(".overlap2");
+  var overlapLabel3 = document.querySelector(".overlap3");
+  var overlapLabel4 = document.querySelector(".overlap4");
+
+  var uniqueSet1Values = set1Values.filter(value => !set2Values.includes(value) && !set3Values.includes(value));
+  var uniqueSet2Values = set2Values.filter(value => !set1Values.includes(value) && !set3Values.includes(value));
+  var uniqueSet3Values = set3Values.filter(value => !set1Values.includes(value) && !set2Values.includes(value));
+
+  circle1Label.innerHTML = uniqueSet1Values.map(value => "<p class='lab1'>" + value + "</p>").join("");
+  circle2Label.innerHTML = uniqueSet2Values.map(value => "<p class='lab2'>" + value + "</p>").join("");
+  circle3Label.innerHTML = uniqueSet3Values.map(value => "<p class='lab3'>" + value + "</p>").join("");
+
+  var overlapIntersection1 = intersection1.filter(value => !intersectionAll.includes(value));
+  var overlapIntersection2 = intersection2.filter(value => !intersectionAll.includes(value));
+  var overlapIntersection3 = intersection3.filter(value => !intersectionAll.includes(value));
+
+  overlapLabel1.innerHTML = overlapIntersection1.map(value => "<p class='over1'>" + value + "</p>").join("");
+  overlapLabel2.innerHTML = overlapIntersection2.map(value => "<p class='over2'>" + value + "</p>").join("");
+  overlapLabel3.innerHTML = intersectionAll.map(value => "<p class='over3'>" + value + "</p>").join("");
+  overlapLabel4.innerHTML = overlapIntersection3.map(value => "<p class='over4'>" + value + "</p>").join("");
+}
+
+     
+function resetData() {
+  var set1Input = document.getElementById("set1-input");
+  var set2Input = document.getElementById("set2-input");
+  var set3Input = document.getElementById("set3-input");
+
+  var unionResult = document.getElementById("union-result");
+  var intersectionResult1 = document.getElementById("intersection-result1");
+  var intersectionResult2 = document.getElementById("intersection-result2");
+  var intersectionResult3 = document.getElementById("intersection-result3");
+  var intersectionResultAll = document.getElementById("intersection-result-all");
+  var differenceResult1 = document.getElementById("difference-result1");
+  var differenceResult2 = document.getElementById("difference-result2");
+  var differenceResult3 = document.getElementById("difference-result3");
+  var differenceResult4 = document.getElementById("difference-result4");
+  var differenceResult5 = document.getElementById("difference-result5");
+  var differenceResult6 = document.getElementById("difference-result6");
+  var complementResult1 = document.getElementById("complement-result1");
+  var complementResult2 = document.getElementById("complement-result2");
+  var complementResult3 = document.getElementById("complement-result3");
+  
+  var circle1Label = document.querySelector(".venn_diagram .label1");
+  var circle2Label = document.querySelector(".venn_diagram .label2");
+  var circle3Label = document.querySelector(".venn_diagram .label3");
+  var overlapLabel1 = document.querySelector(".overlap1");
+  var overlapLabel2 = document.querySelector(".overlap2");
+  var overlapLabel3 = document.querySelector(".overlap3");
+  var overlapLabel4 = document.querySelector(".overlap4");
+
+  set1Input.value = "";
+  set2Input.value = "";
+  set3Input.value = "";
+  unionResult.textContent = "Union: ";
+  intersectionResult1.textContent = "Intersection of A and B: ";
+  intersectionResult2.textContent = "Intersection of A and C: ";
+  intersectionResult3.textContent = "Intersection of B and C: ";
+  intersectionResultAll.textContent = "Intersection of All Sets: ";
+  differenceResult1.textContent = "Difference of A to B: ";
+  differenceResult2.textContent = "Difference of B to A: ";
+  differenceResult3.textContent = "Difference of A to C: ";
+  differenceResult4.textContent = "Difference of C to A: ";
+  differenceResult5.textContent = "Difference of B to C: ";
+  differenceResult6.textContent = "Difference of C to B: ";
+  complementResult1.textContent = "Complement of A: ";
+  complementResult2.textContent = "Complement of B: ";
+  complementResult3.textContent = "Complement of C: ";
+
+  circle1Label.innerHTML = "A";
+  circle2Label.innerHTML = "B";
+  circle3Label.innerHTML = "C";
+  overlapLabel1.innerHTML = "AB";
+  overlapLabel2.innerHTML = "AC";
+  overlapLabel3.innerHTML = "ABC";
+  overlapLabel4.innerHTML = "BC";
+}
+
+</script>
+</body>
+</html>

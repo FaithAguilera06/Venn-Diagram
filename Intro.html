@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <audio id="sound1" src="meck.mp3" preload="auto"></audio>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="Intro.css">
+ <title>Intro</title>
+</head>
+<body>
+    <div id ="pre" ></div>
+
+    <header>
+        <img src="Logo.png"class="logo"style style="size-adjust: 5px;"></img>
+        <nav class="navigation">
+            <a href="Index.html">Home</a>
+            <a href="Intro.html" class="active">About</a>
+            <a href="2sets.html">2 Sets</a>
+            <a href="set-three.html">3 Sets</a>
+        </nav>
+    </header>
+    <hr>
+    <div class="container">
+        <h1>
+            What are sets?
+        </h1>
+        <a>In computer science and mathematics, a set is a collection of distinct objects, considered as an unordered group. Sets are a fundamental concept in set theory and are widely used in various areas of computer science and mathematics.</a>
+        <br><h1>
+            Set operations allow for manipulating sets, including:
+        </h1>
+        <a><strong>Union:</strong> Combines two sets to create a new set that contains all unique elements from both sets.
+            <strong>Intersection:</strong> Creates a new set with elements that are common to both sets.
+            <br>
+            <strong>Difference:</strong> Creates a new set with elements that are present in one set but not in the other.
+            <br>
+            <strong>Subset:</strong> Checks if all elements of one set are contained within another set.
+            <br>
+            <strong>Complement:</strong> Creates a new set with elements that are not present in the original set.</a>
+        <br><h1>
+            What are Venn Diagrams got to do with Sets?
+        </h1>
+        <a>A Venn diagram is a visual representation of sets using overlapping circles. It helps illustrate the relationships between different sets and their elements.</a>
+        <br><h2>
+            2 sets
+        </h2>
+        <a>diagrams are often used to illustrate set operations such as union, intersection, and complement. They can also help in understanding the correlation or relationship between two sets.
+        <br><br>
+        When correlating two sets using a Venn diagram, the overlapping region represents the elements that are common to both sets. This region provides insight into the intersection of the two sets, showing the elements that belong to both sets simultaneously.
+        <br><br>
+        By visually representing the shared elements and their relationship within the Venn diagram, it becomes easier to analyze and understand the correlation between the two sets. It helps in identifying similarities, differences, and the extent of overlap between the sets.</a>
+        <button onmousedown="sound1.play()" class="button1" onclick="location.href='2sets.html';">2 sets</button>
+        <br><h2>
+            3 sets
+        </h2>
+        <a>Venn diagrams are often used to illustrate set operations such as union, intersection, and complement. They can also help in understanding the correlation or relationship between two sets.
+        <br><br>
+        When correlating two sets using a Venn diagram, the overlapping region represents the elements that are common to both sets. This region provides insight into the intersection of the two sets, showing the elements that belong to both sets simultaneously.
+        <br><br>
+        By visually representing the shared elements and their relationship within the Venn diagram, it becomes easier to analyze and understand the correlation between the two sets. It helps in identifying similarities, differences, and the extent of overlap between the sets.</a>
+        <button onmousedown="sound1.play()" class="button2" onclick="location.href='set-three.html';">3 sets</button>
+    </div>
+ <script>
+  var loader = document.getElementById("pre");
+  window.addEventListener("load", function() {
+    setTimeout(function() {
+      loader.style.display = "none";
+    }, 2000); // Adjust the delay (in milliseconds) according to your preference
+  });
+    </script>
+
+</body>
+</html>
